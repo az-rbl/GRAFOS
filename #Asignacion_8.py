@@ -10,8 +10,25 @@
 import numpy as np
 A = (1, 2, 3, 4)
 R = [ (1, 2), (2, 2), (2, 3), (3, 4), (4, 3) ]
-T =[]
-for i in A:
-    for j in A:
-        T.append(zip(i,j))
-print(T)
+#T =[]
+def Matriz_conect(A,R):
+    Mat = np.empty([len(A), len(A)],dtype=int)
+    print(Mat)
+    k=0
+    for i in A:
+        T=[]
+        for j in A:
+            t = (i,j)
+            if t in R:
+                T.append(1)
+            else:
+                T.append(0)
+        print(Mat[k])
+        Mat[k]=T
+        k+=1
+    return(Mat)
+
+if __name__=='__main__':
+    rango=int(input("Cuantos nodos tiene el grafo"))
+    A = [range(1,rango)]
+    R=
