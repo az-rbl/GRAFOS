@@ -13,7 +13,7 @@ R = [ (1, 2), (2, 2), (2, 3), (3, 4), (4, 3) ]
 #T =[]
 def Matriz_conect(A,R):
     Mat = np.empty([len(A), len(A)],dtype=int)
-    print(Mat)
+    #print(Mat)
     k=0
     for i in A:
         T=[]
@@ -23,12 +23,18 @@ def Matriz_conect(A,R):
                 T.append(1)
             else:
                 T.append(0)
-        print(Mat[k])
+        #print(Mat[k])
         Mat[k]=T
         k+=1
     return(Mat)
 
 if __name__=='__main__':
-    rango=int(input("Cuantos nodos tiene el grafo"))
-    A = [range(1,rango)]
-    R=
+    rango=int(input("Cuantos nodos tiene el grafo? "))
+    A = list(range(1,rango+1))
+    s = input("Relaciones del grafo: ")
+    R= [tuple(int(x) for x in y.split(',')) for y in s.split(' ')]
+    print(A)
+    print(R)
+    MC=Matriz_conect(A,R)
+    print(MC)
+    print(np.multiply(MC,MC))
