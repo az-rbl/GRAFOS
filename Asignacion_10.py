@@ -1,3 +1,4 @@
+
 #Asignacion.py
 #Asignación_#10. Implementar el algortitmo de BFS parte2
 #Implementar por completo el algoritmo de BFS
@@ -12,11 +13,11 @@ def BFS(G,s):
         #print(G)
         for v in range(0,len(G[u]),2):
             #print(G[u][v])
-            if colors[G[u][v]-1]=='white':
-                colors[G[u][v]-1] = 'gray'
-                d[G[u][v]-1] = d[u]+1
-                pi[G[u][v]-1]= u
-                q.append(G[u][v]-1)
+            if colors[G[u][v]]=='white':
+                colors[G[u][v]] = 'gray'
+                d[G[u][v]] = d[u]+1
+                pi[G[u][v]]= u
+                q.append(G[u][v])
                 #print(q)
         colors[u]='black'
     return colors,d,pi,q
@@ -30,13 +31,6 @@ def rutas(pi, i, l):
     
 if __name__=='__main__':
     g =lg('ejemplo1.txt')
-    for i in range(len(g)):
-        #print(f"padre {i}")
-        colors,d,pi,q=BFS(g,i)
-        r =[]
-        for i in range(len(pi)):
-            l=[]
-            r.append(rutas(pi,i,l))
-            #print(" ")
-        print(r)
+    print(BFS(g,2))
+
                     

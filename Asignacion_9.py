@@ -8,15 +8,15 @@ def init_BFS(G,s):
     d =[x for x in range(len(G))]
     pi =[x for x in range(len(G))]
     colors =[x for x in range(len(G))]
-    q = [s-1]
+    q = [s]
     for u in range(len(G)):
-        if u !=(s-1):
+        if u !=(s):
             colors[u] = 'white'
             d[u] =10000
             pi[u] = None
-    colors[s-1]='gray'
-    d[s-1] = 0
-    pi[s-1] = None
+    colors[s]='gray'
+    d[s] = 0
+    pi[s] = None
     return colors,d,pi,q
 if __name__=="__main__":
     g =lg('ejemplo1.txt')
