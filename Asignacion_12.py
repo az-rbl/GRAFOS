@@ -1,22 +1,20 @@
-# Asignacion_12.py
-# Asignación_#12. Implementar el algoritmo de Dijkstra
+def initialize_SS(G,s):
+    d = [1000]*len(G)
+    pi = [None]*len(G)
+    d[s]=0
+    return d,pi
+def extract_min(q):
+    pass
+def relax(u,v,w):
+    pass
 
-from Asignacion_8_1 import leer_grafo
-from Asignacion_9 import init_BFS
-
-def extract_min(q,g,s):
-    for i in q:
-        
-
-if __name__ =='__main__':
-    g =leer_grafo('ejemplo1.txt')
-    colors,d,pi,q=init_BFS(g,0)
-    q = [x for x in range(len(g))]
-    s = []
-    while q!= 0:
-        
-
-
-
-    print(colors,d,pi,q)
+def dijkstra(G,w,s):
+    d,g=initialize_SS(G,s)
+    S=[]
+    Q=G
+    while(Q!=[]):
+        u =extract_min(Q)
+        S=u
+        for v in S:
+            relax(u,v,w)
     
