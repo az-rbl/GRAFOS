@@ -76,7 +76,7 @@ def dibujar_arbol(r, d):
 
 
 if __name__=='__main__':
-    g =lg('ejemplo3.txt')
+    g =lg('ejemplo1.txt')
     r =todos_nodos(g)
     colors,d,pi,q = BFS(g,0)
     fig, all_axes = plt.subplots(1, 2)
