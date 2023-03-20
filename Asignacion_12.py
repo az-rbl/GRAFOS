@@ -18,9 +18,9 @@ def extract_min(Q,G,d):
     return Q.pop(Q.index(min))
 
 def w(u,v,G):
-    print(list(range(0,len(G[u]),2)))
+    #print(list(range(0,len(G[u]),2)))
     for i in list(range(0,len(G[u]),2)):
-        print(i)
+        #print(i)
         if G[u][i]==v:
             return G[u][i+1]
     
@@ -46,6 +46,28 @@ def dijkstra(G,s):
     return d,pi, S, Q
 
 
+def rutas(pi, i, l):
+    l.append(i)
+    if pi[i]!= None:
+        rutas(pi,pi[i],l)
+        
+    return l
+
+def todos_nodos(g):
+    r =[]
+    ds=[]
+    for i in range(len(g)):
+        nl=[]
+        r.append(nl)
+        #print(f"padre {i}")
+        d,pi, S, Q=dijkstra(g,i)
+        for j in range(len(pi)):
+            l=[]
+            rut =rutas(pi,j,l)
+            r[i].append(rut)
+        ds.append(d)
+    return r,ds
+
 def dibujar(d,pi):
     
     G = nx.DiGraph()
@@ -62,43 +84,17 @@ def dibujar(d,pi):
     #plt.show()
     return G
 
-def dibujar_arbol(r, d):
-    G = nx.DiGraph()
-    for j in range(len(d)):
-        G.add_node(j,d=colors[j])
-    for i in r:
-        if len(i)>1:
-            G.add_edge(i[1],i[0])
-    # nx.draw(G, with_labels=True)
-    # plt.show()
-    return G
-
-
-
 
 
 if __name__=="__main__":
     G=lg('ejemplo1.txt')
     print(G)
-    # d,pi=initialize_SS(G,0)
-    # print(d,pi)
-    # Q=list(range(len(G)))
-    # S=[extract_min(Q,G,d)]
-    # print(Q)
-    # relax(0,0,G,d, pi)
-    # print(d,pi)
-    # S.append(extract_min(Q,G,d))
-    # print(Q)
-    # print(w(1,0,G))
-    # relax(1,0,G,d, pi)
-    # print(d,pi)
-    d,pi, S, Q=dijkstra(G,0)
-    # d=[0, 1, 3, 5, 15, 1000]
-    # pi =[None, 0, 0, 0, 1, 4]
-    # S=[0, 1, 2, 3, 4,5]
-    # relax(5,1,G,d, pi)
-    # print(w(5,1,G))
-    # print(d,pi)
+    # r,d=todos_nodos(G)
+    # print(f"rutas: {r}")
+    # print(f"distancias: {d}")
+    d,pi, S, Q=dijkstra(G,5)
+    print(d,pi,S,Q)
+   
 
     Gf=dibujar(d,pi)
     nx.draw(Gf, with_labels=True,  arrows=True)
