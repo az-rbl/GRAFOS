@@ -3,9 +3,9 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 def initialize_SS(G,s):
-    d = [1000]*len(G)
-    pi = [None]*len(G)
-    d[s]=0
+    d = [1000]*len(G)#distancias llenas con infintio
+    pi = [None]*len(G)#padres
+    d[s]=0#nodo inicial
     return d,pi
 
 #funcion que regresa el valor de peso mínimo de entre los nodos de la cola Q
@@ -19,16 +19,16 @@ def extract_min(Q,G,d):
 
 def w(u,v,G):
     #print(list(range(0,len(G[u]),2)))
-    for i in list(range(0,len(G[u]),2)):
+    for i in list(range(0,len(G[u]),2)):#cuenta de dos en dos en dos
         #print(i)
         #print(f"{G[u][i]}=={v}")
         if G[u][i]==v:
-            return G[u][i+1]
+            return G[u][i+1] #regresa el peso
     return 1000
     #return -1
 
 
-def relax(u,v,G,d, pi):
+def relax(u,v,G,d, pi):# Calcula el peso hacia de un nodo a otro nodo
     #if w(u,v,G)>0:
     if d[v] > d[u] +w(u,v,G):
         d[v]=d[u]+w(u,v,G)
@@ -37,14 +37,14 @@ def relax(u,v,G,d, pi):
 
 def dijkstra(G,s):
     d,pi=initialize_SS(G,s)
-    S=[]
-    Q=list(range(len(G)))
-    while(Q!=[]):
-        u =extract_min(Q,G,d)
-        S.append(u)
+    S=[] #Cola de los nodos clasificados
+    Q=list(range(len(G))) #nodos no clasificados
+    while(Q!=[]):# Mientras haya nodos no clasificados
+        u =extract_min(Q,G,d) #Extraer el nodo de distancia inima, raiz primero
+        S.append(u) #añadirlo a los clasificados,
         for v in Q:
-            relax(u,v,G,d, pi)
-        #print(d,pi, S, Q)
+            relax(u,v,G,d, pi) #Va pasar los no clasificados a un relajamiento
+        print(d,pi, S, Q)
     return d,pi, S, Q
 
 
